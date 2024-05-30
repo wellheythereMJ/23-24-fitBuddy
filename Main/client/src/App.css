@@ -367,8 +367,8 @@ body {
   margin: 0; /* Remove default margin */
   height: 100vh; /* Set the body height to 100% of the viewport height */
   font-family: Arial, sans-serif; /* Example font family */
-  width: 100px;
-  height: 100px;
+  width: max-content;
+  height: max-content;
 }
 
 h1,
