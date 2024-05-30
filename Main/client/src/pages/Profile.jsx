@@ -1,23 +1,30 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
+import { users } from '../utils/users';
 import './Profile.css';
 
 const Profile = () => {
+  const { username } = useParams();
+  const user = users.find((u) => u.username === username);
+
+  if (!user) {
+    return <h1>User not found</h1>;
+  }
+
   return (
     <div className="profile-container">
       <div className="profile-header">
-        <img src="../assets/profile-picture.jpg" alt="Profile" className="profile-picture" />
-        <h1 className="profile-name">John Doe</h1>
+        <img src={user.profilePicture} alt="Profile" className="profile-picture" />
+        <h1 className="profile-name">{user.name}</h1>
       </div>
       <div className="profile-details">
         <h2>About Me</h2>
-        <p>
-          Hello! I'm John Doe, a fitness enthusiast and software developer. I love working out and helping others achieve their fitness goals.
-        </p>
+        <p>{user.bio}</p>
         <h2>My Goals</h2>
         <ul>
-          <li>Run a marathon</li>
-          <li>Improve my strength</li>
-          <li>Maintain a healthy diet</li>
+          {user.goals.map((goal, index) => (
+            <li key={index}>{goal}</li>
+          ))}
         </ul>
       </div>
     </div>

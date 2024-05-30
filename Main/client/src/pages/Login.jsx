@@ -1,5 +1,7 @@
+// src/pages/Login.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { users } from '../utils/users'; // Import user data
 import './Login.css';
 
 const Login = () => {
@@ -9,8 +11,9 @@ const Login = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (username === 'user' && password === 'password') {
-      navigate('/profile');
+    const user = users.find((u) => u.username === username && u.password === password);
+    if (user) {
+      navigate(`/profile/${user.username}`);
     } else {
       alert('Invalid credentials');
     }
