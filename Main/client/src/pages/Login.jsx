@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { users } from '../utils/users';
 import './Login.css';
 
 const Login = () => {
@@ -9,8 +10,9 @@ const Login = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (username === 'user' && password === 'password') {
-      navigate('/profile');
+    const user = users.find((u) => u.username === username && u.password === password);
+    if (user) {
+      navigate(`/profile/${user.username}`);
     } else {
       alert('Invalid credentials');
     }
@@ -38,6 +40,10 @@ const Login = () => {
         </label>
         <button type="submit">Login</button>
       </form>
+      {/* <div>
+        <p>Not already a user?</p>
+        <Link to="/Signup">Sign-up Here!</Link>
+      </div> */}
     </div>
   );
 };
