@@ -1,7 +1,6 @@
-// src/pages/Login.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { users } from '../utils/users'; // Import user data
+import { users } from '../utils/users';
 import './Login.css';
 
 const Login = () => {
