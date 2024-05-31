@@ -33,6 +33,13 @@ const Profile = () => {
             <li key={index}>{goal}</li>
           ))}
         </ul>
+        <section className="profile-actions">
+        <h2>Actions</h2>
+        <div className="profile-buttons">
+          <a href="/dashboard" className="profile-button">Go to Dashboard</a>
+          <a href="/welcome" className="profile-button">Go to Welcome</a>
+        </div>
+      </section>
       </div>
     </div>
   );
