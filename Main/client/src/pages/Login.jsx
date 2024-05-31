@@ -10,11 +10,11 @@ const Login = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const user = users.find((u) => u.username === username && u.password === password);
+    const user = users.find((user) => user.username === username && user.password === password);
     if (user) {
-      navigate(`/profile/${user.username}`);
+      navigate(`/profile/${username}`);
     } else {
-      alert('Invalid credentials');
+      alert('Invalid username or password');
     }
   };
 
@@ -40,10 +40,7 @@ const Login = () => {
         </label>
         <button type="submit">Login</button>
       </form>
-      {/* <div>
-        <p>Not already a user?</p>
-        <Link to="/Signup">Sign-up Here!</Link>
-      </div> */}
+      <p>Don't have an account? <a href="/signup">Sign up here</a></p>
     </div>
   );
 };

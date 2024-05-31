@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { users } from '../utils/users';
+import { users, profilePictures } from '../utils/users';
 import './Signup.css';
 
 const Signup = () => {
@@ -9,6 +9,7 @@ const Signup = () => {
   const [name, setName] = useState('');
   const [bio, setBio] = useState('');
   const [goals, setGoals] = useState('');
+  const [profilePicture, setProfilePicture] = useState(profilePictures[0]);
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
@@ -23,6 +24,7 @@ const Signup = () => {
       name,
       bio,
       goals: goals.split(',').map(goal => goal.trim()),
+      profilePicture
     });
     navigate('/login');
   };
@@ -70,8 +72,25 @@ const Signup = () => {
             onChange={(e) => setGoals(e.target.value)}
           />
         </label>
+        <label>
+          Profile Picture:
+          <select
+            value={profilePicture}
+            onChange={(e) => setProfilePicture(e.target.value)}
+          >
+            {profilePictures.map((picture, index) => (
+              <option key={index} value={picture}>
+                Profile Picture {index + 1}
+              </option>
+            ))}
+          </select>
+        </label>
         <button type="submit">Sign Up</button>
       </form>
+      <div className="preview">
+        <h2>Profile Picture Preview</h2>
+        <img src={profilePicture} alt="Profile Preview" className="profile-preview" />
+      </div>
     </div>
   );
 };
