@@ -14,7 +14,7 @@ export const users = [
       name: 'John Doe',
       bio: 'Hello! I\'m John Doe, a fitness enthusiast and software developer. I love working out and helping others achieve their fitness goals.',
       goals: ['Run a marathon', 'Improve my strength', 'Maintain a healthy diet'],
-      profilePicture: '../../public/jailHorse.jpg'
+      profilePicture: "/jailHorse.jpg",
     },
     {
       username: 'user2',
@@ -22,6 +22,6 @@ export const users = [
       name: 'Jane Smith',
       bio: 'Hi, I\'m Jane Smith. I am passionate about yoga and healthy living.',
       goals: ['Become a yoga instructor', 'Eat more plant-based foods', 'Travel more'],
-      profilePicture: '../../public/doublehp.jpg'
+      profilePicture: '/doublehp.jpg'
     }
 ];
