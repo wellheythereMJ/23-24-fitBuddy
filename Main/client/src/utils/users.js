@@ -1,5 +1,5 @@
 export const profilePictures = [
-  '/public/jailhorse.jpg',
+  '/jailhorse.jpg',
   '/doublehp.jpg',
   '/Sam.JPG',
   '/Terry.JPG',
