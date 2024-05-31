@@ -1,8 +1,10 @@
 export const profilePictures = [
-  '../../public/jailhorse.jpg',
-  '../../public/doublehp.jpg',
-  '/profile3.jpg',
-  '/profile4.jpg'
+  '/public/jailhorse.jpg',
+  '/doublehp.jpg',
+  '/Sam.JPG',
+  '/Terry.JPG',
+  '/Gabe.JPG',
+  '/Alex.JPG'
 ];
 
 export const users = [
