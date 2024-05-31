@@ -1,5 +1,5 @@
 export const profilePictures = [
-  '/jailhorse.jpg',
+  '/jailHorse.jpg',
   '/doublehp.jpg',
   '/Sam.JPG',
   '/Terry.JPG',
@@ -14,7 +14,7 @@ export const users = [
       name: 'John Doe',
       bio: 'Hello! I\'m John Doe, a fitness enthusiast and software developer. I love working out and helping others achieve their fitness goals.',
       goals: ['Run a marathon', 'Improve my strength', 'Maintain a healthy diet'],
-      profilePicture: '../../public/jailhorse.jpg'
+      profilePicture: '../../public/jailHorse.jpg'
     },
     {
       username: 'user2',
