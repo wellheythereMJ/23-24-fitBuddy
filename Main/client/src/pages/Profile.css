@@ -52,4 +52,23 @@
   list-style-type: disc;
   padding-left: 20px;
 }
-  
+
+.profile-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.profile-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1.2em;
+  transition: background-color 0.3s;
+}
+
+.profile-button:hover {
+  background-color: #45a049;
+}
