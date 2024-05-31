@@ -3,6 +3,13 @@ import { useParams } from 'react-router-dom';
 import { users } from '../utils/users';
 import './Profile.css';
 
+// __________                _____.__.__                   __                
+// \______   \_______  _____/ ____\__|  |   ____          |__| _________  ___
+//  |     ___/\_  __ \/  _ \   __\|  |  | _/ __ \         |  |/  ___/\  \/  /
+//  |    |     |  | \(  <_> )  |  |  |  |_\  ___/         |  |\___ \  >    < 
+//  |____|     |__|   \____/|__|  |__|____/\___  > /\ /\__|  /____  >/__/\_ \
+//                                             \/  \/ \______|    \/       \/
+
 const Profile = () => {
   const { username } = useParams();
   const user = users.find((u) => u.username === username);
