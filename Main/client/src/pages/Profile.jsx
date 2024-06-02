@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { users } from '../utils/users';
+import axios from '../utils/axiosInstance';
+import { AuthContext } from '../AuthContext';
 import './Profile.css';
 
 // __________                _____.__.__                   __                
@@ -12,35 +13,50 @@ import './Profile.css';
 
 const Profile = () => {
   const { username } = useParams();
-  const user = users.find((u) => u.username === username);
+  const { authToken } = useContext(AuthContext);
+  const [userData, setUserData] = useState(null);
 
-  if (!user) {
-    return <h1>User not found</h1>;
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await axios.get(`/users/profile/${username}`, {
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        });
+        setUserData(response.data);
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    if (authToken) {
+      fetchUserData();
+    }
+  }, [authToken, username]);
+
+  if (!userData) {
+    return <div>Loading...</div>;
   }
 
   return (
     <div className="profile-container">
-      <div className="profile-header">
-        <img src={user.profilePicture} alt="Profile" className="profile-picture" />
-        <h1 className="profile-name">{user.name}</h1>
-      </div>
-      <div className="profile-details">
-        <h2>About Me</h2>
-        <p>{user.bio}</p>
-        <h2>My Goals</h2>
-        <ul>
-          {user.goals.map((goal, index) => (
-            <li key={index}>{goal}</li>
-          ))}
-        </ul>
+      <header className="profile-header">
+        <h1>{userData.username}'s Profile</h1>
+      </header>
+      <main className="profile-main">
+        <section className="profile-info">
+          <h2>Profile Information</h2>
+          <p>Email: {userData.email}</p>
+          <img src={userData.profilePicture} alt={`${userData.username}'s profile`} />
+        </section>
         <section className="profile-actions">
-        <h2>Actions</h2>
-        <div className="profile-buttons">
-          <a href="/dashboard" className="profile-button">Go to Dashboard</a>
-          <a href="/welcome" className="profile-button">Go to Welcome</a>
-        </div>
-      </section>
-      </div>
+          <h2>Actions</h2>
+          <div className="profile-buttons">
+            <a href="/dashboard" className="profile-button">Go to Dashboard</a>
+          </div>
+        </section>
+      </main>
     </div>
   );
 };
