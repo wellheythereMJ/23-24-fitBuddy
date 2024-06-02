@@ -12,6 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "@apollo/server": "^4.7.1",
+    "argon2": "^0.40.3",
+    "bcrypt": "^5.1.1",
     "express": "^4.17.2",
     "graphql": "^16.6.0",
     "mongoose": "^8.0.0"
