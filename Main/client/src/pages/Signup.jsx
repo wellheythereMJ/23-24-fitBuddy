@@ -11,7 +11,6 @@ const Signup = () => {
   });
 
   const [signupUser, { data, loading, error }] = useMutation(SIGNUP_USER);
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
