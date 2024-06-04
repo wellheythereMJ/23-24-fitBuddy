@@ -1,14 +1,14 @@
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import AuthProvider from './AuthContext.jsx';
-
+import ApolloProvider from './ApolloProvider';
 import App from './App.jsx';
-import Welcome from './pages/Welcome.jsx';
-import Profile from './pages/Profile.jsx';
-import Dashboard from './pages/Dashboard.jsx';
-import Login from './pages/Login.jsx';
-import Signup from './pages/Signup.jsx';
-import NotFound from './pages/NotFound.jsx';
+import Welcome from './pages/Welcome';
+import Profile from './pages/Profile';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import Dashboard from './pages/Dashboard';
+import NotFound from './pages/NotFound'
 
 const router = createBrowserRouter([
   {
@@ -41,7 +41,7 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <AuthProvider>
+  <ApolloProvider>
     <RouterProvider router={router} />
-  </AuthProvider>
+  </ApolloProvider>
 );
