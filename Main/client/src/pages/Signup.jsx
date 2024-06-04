@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import axios from '../utils/axiosInstance';
+import { useMutation } from '@apollo/client';
+import { SIGNUP_USER } from '../utils/signupMutation';
 import './Signup.css';
 
 const Signup = () => {
@@ -9,6 +10,8 @@ const Signup = () => {
     password: '',
   });
 
+  const [signupUser, { data, loading, error }] = useMutation(SIGNUP_USER);
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -16,10 +19,16 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/users/register', formData);
+      const response = await signupUser({
+        variables: {
+          username: formData.username,
+          email: formData.email,
+          password: formData.password,
+        },
+      });
       console.log(response.data);
     } catch (error) {
-      console.log("Error:", error);
+      console.error("Error:", error);
     }
   };
 
@@ -48,7 +57,8 @@ const Signup = () => {
           value={formData.password}
           onChange={handleChange}
         />
-        <button type="submit">Sign Up</button>
+        <button type="submit" disabled={loading}>Sign Up</button>
+        {error && <p>Error: {error.message}</p>}
       </form>
     </div>
   );
