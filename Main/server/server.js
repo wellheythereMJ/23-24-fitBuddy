@@ -2,6 +2,9 @@ const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+const User = require('./models/User');
 
 const { typeDefs, resolvers } = require('./schemas');
 const { authMiddleware } = require('./middleware/auth');
