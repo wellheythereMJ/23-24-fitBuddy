@@ -1,62 +1,59 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { SIGNUP_USER } from '../utils/signupMutation';
-import './Signup.css';
+import { SIGNUP_USER } from '../utils/mutations';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
-  const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: '',
-  });
-
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
   const [signupUser, { data, loading, error }] = useMutation(SIGNUP_USER);
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await signupUser({
-        variables: {
-          username: formData.username,
-          email: formData.email,
-          password: formData.password,
-        },
+      const { data } = await signupUser({
+        variables: { email, password, username },
       });
-      console.log(response.data);
-    } catch (error) {
-      console.error("Error:", error);
+      localStorage.setItem('authToken', data.signup.token);
+      navigate('/profile');
+    } catch (e) {
+      console.error(e);
     }
   };
 
   return (
-    <div className="signup-container">
-      <form onSubmit={handleSubmit} className="signup-form">
-        <h2>Sign Up</h2>
+    <div>
+      <h2>Sign Up</h2>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
-          name="username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
           placeholder="Username"
-          value={formData.username}
-          onChange={handleChange}
+          required
         />
         <input
           type="email"
-          name="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
+          required
         />
         <input
           type="password"
-          name="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
+          required
         />
-        <button type="submit" disabled={loading}>Sign Up</button>
+        <button type="submit" disabled={loading}>
+          {loading ? 'Signing up...' : 'Sign Up'}
+        </button>
         {error && <p>Error: {error.message}</p>}
       </form>
     </div>

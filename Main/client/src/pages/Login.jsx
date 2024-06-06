@@ -1,50 +1,49 @@
 import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { LOGIN_USER } from '../utils/mutations';
 import { useNavigate } from 'react-router-dom';
-import axios from '../utils/axiosInstance';
-import './Login.css';
 
-const Login = ({ setAuthToken }) => {
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-  });
+const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loginUser, { data, loading, error }] = useMutation(LOGIN_USER);
   const navigate = useNavigate();
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/users/login', formData);
-      const { token, userId, username } = response.data;
-      setAuthToken(token);
-      navigate(`/profile/${username}`);
-    } catch (error) {
-      alert(error.response.data.message);
+      const { data } = await loginUser({
+        variables: { email, password },
+      });
+      localStorage.setItem('authToken', data.login.token);
+      navigate('/profile');
+    } catch (e) {
+      console.error(e);
     }
   };
 
   return (
-    <div className="login-container">
-      <form onSubmit={handleSubmit} className="login-form">
-        <h2>Login</h2>
+    <div>
+      <h2>Login</h2>
+      <form onSubmit={handleSubmit}>
         <input
           type="email"
-          name="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
+          required
         />
         <input
           type="password"
-          name="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
+          required
         />
-        <button type="submit">Login</button>
+        <button type="submit" disabled={loading}>
+          {loading ? 'Logging in...' : 'Login'}
+        </button>
+        {error && <p>Error: {error.message}</p>}
       </form>
       <p>
         Don't have an account? <a href="/signup">Sign up here</a>
