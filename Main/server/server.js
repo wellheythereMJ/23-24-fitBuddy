@@ -17,6 +17,7 @@ mongoose.connect('mongodb://localhost:27017/horsepower', {
 
 app.use(cors());
 app.use(express.json());
+const db = mongoose.connection;
 
 const startServer = async () => {
   const server = new ApolloServer({ typeDefs, resolvers });
