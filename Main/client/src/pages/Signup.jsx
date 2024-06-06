@@ -25,6 +25,7 @@ const Signup = () => {
 
   return (
     <form onSubmit={handleSignup}>
+      <input name="username" type="text" placeholder="Username"/>
       <input name="email" type="email" placeholder="Email" />
       <input name="password" type="password" placeholder="Password" />
       <button type="submit">Sign Up</button>
