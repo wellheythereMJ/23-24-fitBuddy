@@ -1,19 +1,35 @@
 const jwt = require('jsonwebtoken');
 
-const auth = (req, res, next) => {
-  const token = req.header('Authorization').replace('Bearer ', '');
+const secret = 'your-secret-key';
+const expiration = '2h';
 
-  if (!token) {
-    return res.status(401).json({ message: 'No token, authorization denied' });
-  }
+module.exports = {
+  authMiddleware: function ({ req }) {
+    let token = req.body.token || req.query.token || req.headers.authorization;
 
-  try {
-    const decoded = jwt.verify(token, 'your_jwt_secret');
-    req.user = decoded;
-    next();
-  } catch (err) {
-    res.status(401).json({ message: 'Token is not valid' });
-  }
+    if (req.headers.authorization) {
+      token = token
+        .split(' ')
+        .pop()
+        .trim();
+    }
+
+    if (!token) {
+      return req;
+    }
+
+    try {
+      const { data } = jwt.verify(token, secret, { maxAge: expiration });
+      req.user = data;
+    } catch {
+      console.log('Invalid token');
+    }
+
+    return req;
+  },
+  signToken: function ({ username, email, _id }) {
+    const payload = { username, email, _id };
+
+    return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
+  },
 };
-
-module.exports = auth;
