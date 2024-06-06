@@ -1,62 +1,42 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from '../utils/axiosInstance';
+import { useQuery, gql } from '@apollo/client';
 import { AuthContext } from '../AuthContext';
 import './Profile.css';
 
-// __________                _____.__.__                   __                
-// \______   \_______  _____/ ____\__|  |   ____          |__| _________  ___
-//  |     ___/\_  __ \/  _ \   __\|  |  | _/ __ \         |  |/  ___/\  \/  /
-//  |    |     |  | \(  <_> )  |  |  |  |_\  ___/         |  |\___ \  >    < 
-//  |____|     |__|   \____/|__|  |__|____/\___  > /\ /\__|  /____  >/__/\_ \
-//                                             \/  \/ \______|    \/       \/
+const GET_USER_PROFILE = gql`
+  query GetUserProfile($id: ID!) {
+    user(id: $id) {
+      id
+      name
+      email
+      profilePicture
+    }
+  }
+`;
 
 const Profile = () => {
-  const { username } = useParams();
+  const { id } = useParams();
   const { authToken } = useContext(AuthContext);
-  const [userData, setUserData] = useState(null);
+  const { loading, error, data } = useQuery(GET_USER_PROFILE, {
+    variables: { id },
+    context: {
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+      },
+    },
+  });
 
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const response = await axios.get(`/users/profile/${username}`, {
-          headers: {
-            Authorization: `Bearer ${authToken}`,
-          },
-        });
-        setUserData(response.data);
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-      }
-    };
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
 
-    if (authToken) {
-      fetchUserData();
-    }
-  }, [authToken, username]);
-
-  if (!userData) {
-    return <div>Loading...</div>;
-  }
+  const user = data?.user;
 
   return (
-    <div className="profile-container">
-      <header className="profile-header">
-        <h1>{userData.username}'s Profile</h1>
-      </header>
-      <main className="profile-main">
-        <section className="profile-info">
-          <h2>Profile Information</h2>
-          <p>Email: {userData.email}</p>
-          <img src={userData.profilePicture} alt={`${userData.username}'s profile`} />
-        </section>
-        <section className="profile-actions">
-          <h2>Actions</h2>
-          <div className="profile-buttons">
-            <a href="/dashboard" className="profile-button">Go to Dashboard</a>
-          </div>
-        </section>
-      </main>
+    <div className="profile">
+      <h1>{user.name}'s Profile</h1>
+      <img src={user.profilePicture} alt={`${user.name}'s profile`} />
+      <p>Email: {user.email}</p>
     </div>
   );
 };
