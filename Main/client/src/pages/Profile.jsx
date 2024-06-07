@@ -1,24 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { users } from '../utils/users';
 import './Profile.css';
 
-// __________                _____.__.__                   __                
-// \______   \_______  _____/ ____\__|  |   ____          |__| _________  ___
-//  |     ___/\_  __ \/  _ \   __\|  |  | _/ __ \         |  |/  ___/\  \/  /
-//  |    |     |  | \(  <_> )  |  |  |  |_\  ___/         |  |\___ \  >    < 
-//  |____|     |__|   \____/|__|  |__|____/\___  > /\ /\__|  /____  >/__/\_ \
-//                                             \/  \/ \______|    \/       \/
-
 const Profile = () => {
-  // const { username } = 'user1';
+  const [dropdownVisible, setDropdownVisible] = useState(false);
   const user = users[0];
+
   if (!user) {
     return <h1>User not found</h1>;
   }
+
+  const toggleDropdown = () => {
+    setDropdownVisible(!dropdownVisible);
+  };
+
   return (
     <div className="profile-container">
       <div className="settings">
-        <button></button>
+        <button onClick={toggleDropdown}>Settings</button>
+        {dropdownVisible && (
+          <div className="dropdown-menu">
+            <ul>
+              <li>Profile Settings</li>
+              <li>Privacy Settings</li>
+              <li>Change User</li>
+            </ul>
+          </div>
+        )}
       </div>
       <div className="profile-header">
         <img src={user.profilePicture} alt="Profile" className="profile-picture" />
@@ -37,4 +45,5 @@ const Profile = () => {
     </div>
   );
 };
+
 export default Profile;
