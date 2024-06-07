@@ -26,3 +26,12 @@ export const ADD_USER = gql`
     }
   }
 `;
+export const CREATE_USER = gql`
+  mutation createUser($_id: String!, $username: String!, $password: String) {
+    createUser(_id: $_id, username: $username, password: $password) {
+      _id
+      username
+      password
+    }
+  }
+`;
