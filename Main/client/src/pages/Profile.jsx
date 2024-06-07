@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { users } from '../utils/users';
-import { useNavigate } from 'react-router-dom';
 import './Profile.css';
 
 const Profile = () => {
