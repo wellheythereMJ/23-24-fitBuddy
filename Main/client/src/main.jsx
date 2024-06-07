@@ -5,7 +5,7 @@ import ApolloProvider from './ApolloProvider';
 import App from './App.jsx';
 import Welcome from './pages/Welcome';
 import Profile from './pages/Profile';
-import Login from './pages/Login';
+import Login from './pages/Lg2';
 import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
 import NotFound from './pages/NotFound'
@@ -29,11 +29,11 @@ const router = createBrowserRouter([
         element: <Signup />
       },
       {
-        path: 'profile',
+        path: 'profile/:username',
         element: <Profile />
       },
       {
-        path: 'dashboard',
+        path: 'dashboard/:username',
         element: <Dashboard />
       },
     ],

@@ -26,7 +26,7 @@ const Dashboard = () => {
           <p>Welcome to your dashboard! Here you can track your fitness progress and see your stats.</p>
         </section>
         <section className="dashboard-category">
-          <h2>Select a Category</h2>
+          <h2>Select a Category<a href='/profile'><button className='dbb'>Profile</button></a></h2>
           <select value={selectedCategory} onChange={handleCategoryChange}>
             <option value="">Select Category</option>
             <option value="upper">Upper Body</option>

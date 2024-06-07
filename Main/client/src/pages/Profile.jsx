@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { users } from '../utils/users';
+import { useNavigate } from 'react-router-dom';
 import './Profile.css';
 
 const Profile = () => {
+  const { username } = useParams();
+  const user = users.find((u) => u.username === username);
   const [dropdownVisible, setDropdownVisible] = useState(false);
-  const user = users[4];
+  const navigate = useNavigate()
 
   if (!user) {
     return <h1>User not found</h1>;
@@ -22,8 +26,12 @@ const Profile = () => {
           <div className="dropdown-menu">
             <ul>
               <li>Profile Settings</li>
-              <li>Workout Plan</li>
-              <li>Change User</li>
+              <li><a onClick={() => {
+                if (dropdownVisible) {navigate(`/dashboard/${user.username}`)}
+              }}>My Plans</a></li>
+              <li><a onClick={() => {
+                if (dropdownVisible) {navigate('/login')}
+              }}>Change User</a></li>
             </ul>
           </div>
         )}
