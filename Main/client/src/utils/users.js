@@ -77,6 +77,7 @@ export const users = [
 
 export const workoutPlans = [
   {
+    area: 'upper',
     muscleGroup: 'Chest',
     difficulty: 'Intermediate',
     exercises: [
@@ -86,6 +87,7 @@ export const workoutPlans = [
     ]
   },
   {
+    area: 'upper',
     muscleGroup: 'Back',
     difficulty: 'Advanced',
     exercises: [
@@ -95,6 +97,7 @@ export const workoutPlans = [
     ]
   },
   {
+    area: 'lower',
     muscleGroup: 'Legs',
     difficulty: 'Beginner',
     exercises: [
@@ -104,6 +107,7 @@ export const workoutPlans = [
     ]
   },
   {
+    area: 'upper',
     muscleGroup: 'Shoulders',
     difficulty: 'Intermediate',
     exercises: [
@@ -113,6 +117,7 @@ export const workoutPlans = [
     ]
   },
   {
+    area: 'upper',
     muscleGroup: 'Arms',
     difficulty: 'Advanced',
     exercises: [
@@ -122,12 +127,63 @@ export const workoutPlans = [
     ]
   },
   {
+    area: 'lower',
     muscleGroup: 'Core',
     difficulty: 'Beginner',
     exercises: [
       { name: 'Crunches', reps: '3 sets of 20 reps' },
       { name: 'Plank', reps: '3 sets of 1 minute' },
       { name: 'Leg Raises', reps: '3 sets of 15 reps' }
+    ]
+  },
+  {
+    area: 'cardio',
+    muscleGroup: 'Full Body',
+    difficulty: 'Intermediate',
+    exercises: [
+      { name: 'Burpees', reps: '3 sets of 15 reps' },
+      { name: 'Kettlebell Swings', reps: '3 sets of 20 reps' },
+      { name: 'Mountain Climbers', reps: '3 sets of 30 seconds' }
+    ]
+  },
+  {
+    area: 'cardio',
+    muscleGroup: 'Cardio',
+    difficulty: 'Advanced',
+    exercises: [
+      { name: 'Sprinting', reps: '6 sets of 30 seconds' },
+      { name: 'High-Intensity Interval Training (HIIT)', reps: '20 minutes' },
+      { name: 'Jump Rope', reps: '10 minutes' }
+    ]
+  },
+  {
+    area: 'lower',
+    muscleGroup: 'Lower Body',
+    difficulty: 'Intermediate',
+    exercises: [
+      { name: 'Lunges', reps: '3 sets of 12 reps each leg' },
+      { name: 'Step-Ups', reps: '3 sets of 15 reps each leg' },
+      { name: 'Leg Curls', reps: '3 sets of 15 reps' }
+    ]
+  },
+  {
+    area: 'upper',
+    muscleGroup: 'Upper Body',
+    difficulty: 'Beginner',
+    exercises: [
+      { name: 'Push-Ups', reps: '3 sets of 10 reps' },
+      { name: 'Dumbbell Rows', reps: '3 sets of 12 reps each arm' },
+      { name: 'Tricep Extensions', reps: '3 sets of 15 reps' }
+    ]
+  },
+  {
+    area: 'flexibility',
+    muscleGroup: 'Flexibility',
+    difficulty: 'All Levels',
+    exercises: [
+      { name: 'Hamstring Stretch', reps: '3 sets of 30 seconds' },
+      { name: 'Quadriceps Stretch', reps: '3 sets of 30 seconds each leg' },
+      { name: 'Shoulder Stretch', reps: '3 sets of 30 seconds each arm' }
     ]
   }
 ];
