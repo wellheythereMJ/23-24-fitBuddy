@@ -4,7 +4,7 @@ import './Profile.css';
 
 const Profile = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
-  const user = users[0];
+  const user = users[4];
 
   if (!user) {
     return <h1>User not found</h1>;
@@ -22,7 +22,7 @@ const Profile = () => {
           <div className="dropdown-menu">
             <ul>
               <li>Profile Settings</li>
-              <li>Privacy Settings</li>
+              <li>Workout Plan</li>
               <li>Change User</li>
             </ul>
           </div>
