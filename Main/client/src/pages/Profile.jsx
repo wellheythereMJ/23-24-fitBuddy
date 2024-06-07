@@ -1,42 +1,47 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { useParams } from 'react-router-dom';
-import { useQuery, gql } from '@apollo/client';
-import { AuthContext } from '../AuthContext';
+import React, { useState } from 'react';
+import { users } from '../utils/users';
 import './Profile.css';
 
-// const GET_USER_PROFILE = gql`
-//   query GetUserProfile($id: ID!) {
-//     user(id: $id) {
-//       id
-//       name
-//       email
-//       profilePicture
-//     }
-//   }
-// `;
-
 const Profile = () => {
-  const { id } = useParams();
-  const { authToken } = useContext(AuthContext);
-  const { loading, error, data } = useQuery(GET_USER_PROFILE, {
-    variables: { id },
-    context: {
-      headers: {
-        Authorization: `Bearer ${authToken}`,
-      },
-    },
-  });
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+  const user = users[0];
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  if (!user) {
+    return <h1>User not found</h1>;
+  }
 
-  const user = data?.user;
+  const toggleDropdown = () => {
+    setDropdownVisible(!dropdownVisible);
+  };
 
   return (
-    <div className="profile">
-      <h1>{user.name}'s Profile</h1>
-      <img src={user.profilePicture} alt={`${user.name}'s profile`} />
-      <p>Email: {user.email}</p>
+    <div className="profile-container">
+      <div className="settings">
+        <button onClick={toggleDropdown}>Settings</button>
+        {dropdownVisible && (
+          <div className="dropdown-menu">
+            <ul>
+              <li>Profile Settings</li>
+              <li>Privacy Settings</li>
+              <li>Change User</li>
+            </ul>
+          </div>
+        )}
+      </div>
+      <div className="profile-header">
+        <img src={user.profilePicture} alt="Profile" className="profile-picture" />
+        <h1 className="profile-name">{user.name}</h1>
+      </div>
+      <div className="profile-details">
+        <h2>About Me</h2>
+        <p>{user.bio}</p>
+        <h2>My Goals</h2>
+        <ul>
+          {user.goals.map((goal, index) => (
+            <li key={index}>{goal}</li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
