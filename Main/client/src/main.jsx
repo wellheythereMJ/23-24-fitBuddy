@@ -6,7 +6,7 @@ import App from './App.jsx';
 import Welcome from './pages/Welcome';
 import Profile from './pages/Profile';
 import Login from './pages/Lg2';
-import Signup from './pages/Signup';
+import Signup from './pages/Su2';
 import Dashboard from './pages/Dashboard';
 import NotFound from './pages/NotFound'
 
