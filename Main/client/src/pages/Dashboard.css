@@ -1,46 +1,44 @@
 .dashboard-container {
-    background-color: #2c2c2c;
-    color: white;
-    font-family: 'Arial', sans-serif;
-    text-align: center;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding: 20px;
-  }
-  
-  .dashboard-header {
-    padding: 20px;
-    background-color: #4CAF50;
-    border-bottom: 5px solid #388E3C;
-  }
-  
-  .dashboard-header h1 {
-    margin: 0;
-    font-size: 2.5em;
-  }
-  
-  .dashboard-main {
-    flex: 1;
-    padding: 20px;
-  }
-  
-  .dashboard-overview,
-  .dashboard-stats {
-    margin-bottom: 40px;
-  }
-  
-  .dashboard-overview h2,
-  .dashboard-stats h2 {
-    font-size: 2em;
-    margin-bottom: 20px;
-  }
-  
-  .dashboard-overview p,
-  .dashboard-stats p {
-    font-size: 1.2em;
-    margin: 0 auto;
-    max-width: 600px;
-  }
-  
+  padding: 20px;
+}
+
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.dashboard-main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.dashboard-overview, .dashboard-stats, .dashboard-workout-plans {
+  background: #f0f0f0;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.dashboard-overview h2, .dashboard-stats h2, .dashboard-workout-plans h2 {
+  margin-bottom: 10px;
+}
+
+.workout-plan {
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.workout-plan h3 {
+  margin-bottom: 5px;
+}
+
+.workout-plan ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.workout-plan li {
+  margin-bottom: 5px;
+}
