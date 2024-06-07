@@ -26,6 +26,19 @@
   margin-bottom: 10px;
 }
 
+.dbb {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 1.2em;
+  transition: background-color 0.3s;
+  float: right;
+  width: fit-content;
+  font-size: 24px;
+}
+
 .dashboard-category select {
   width: 100%;
   padding: 10px;

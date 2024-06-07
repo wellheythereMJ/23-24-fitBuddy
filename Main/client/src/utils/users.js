@@ -54,7 +54,7 @@ export const users = [
     name: 'Dana Lee',
     bio: "Hi, I'm Dana Lee. I'm a fitness trainer and nutritionist. I enjoy helping others achieve their health goals.",
     goals: ['Open my own gym', 'Write a nutrition book', 'Complete an Ironman triathlon'],
-    profilePicture: '/Gabe.jpg'
+    profilePicture: '/Gabe.JPG'
   },
   {
     username: 'user7',
