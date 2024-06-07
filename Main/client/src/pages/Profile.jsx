@@ -4,16 +4,16 @@ import { useQuery, gql } from '@apollo/client';
 import { AuthContext } from '../AuthContext';
 import './Profile.css';
 
-const GET_USER_PROFILE = gql`
-  query GetUserProfile($id: ID!) {
-    user(id: $id) {
-      id
-      name
-      email
-      profilePicture
-    }
-  }
-`;
+// const GET_USER_PROFILE = gql`
+//   query GetUserProfile($id: ID!) {
+//     user(id: $id) {
+//       id
+//       name
+//       email
+//       profilePicture
+//     }
+//   }
+// `;
 
 const Profile = () => {
   const { id } = useParams();
