@@ -1,14 +1,10 @@
 import React, { useState } from 'react';
 import './Dashboard.css';
-import { users, workoutPlans } from '../utils/users';
-import { useNavigate, useParams } from 'react-router-dom';
+import { workoutPlans } from '../utils/users';
 
 const Dashboard = () => {
-  const { username } = useParams();
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedWorkout, setSelectedWorkout] = useState(null);
-  const user = users.find((u) => u.username === username);
-  const navigate = useNavigate();
 
   const handleCategoryChange = (event) => {
     setSelectedCategory(event.target.value);
@@ -30,7 +26,7 @@ const Dashboard = () => {
           <p>Welcome to your dashboard! Here you can track your fitness progress and see your stats.</p>
         </section>
         <section className="dashboard-category">
-          <h2>Select a Category<button className='dbb' onClick={() => {navigate(`/profile/${user.username}`)}}>Profile</button></h2>
+          <h2>Select a Category<a href='/profile'><button className='dbb'>Profile</button></a></h2>
           <select value={selectedCategory} onChange={handleCategoryChange}>
             <option value="">Select Category</option>
             <option value="upper">Upper Body</option>
