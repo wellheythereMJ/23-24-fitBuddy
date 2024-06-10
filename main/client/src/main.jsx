@@ -8,7 +8,8 @@ import Profile from './pages/Profile';
 import Login from './pages/Lg2';
 import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
-import NotFound from './pages/NotFound'
+import NotFound from './pages/NotFound';
+import Settings from './pages/Settings';
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
         path: 'dashboard/:username',
         element: <Dashboard />
       },
+      {
+        path: 'settings/:username',
+        element: <Settings />
+      }
     ],
   },
 ]);
