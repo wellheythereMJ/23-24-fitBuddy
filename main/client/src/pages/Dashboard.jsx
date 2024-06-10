@@ -68,6 +68,7 @@ const Dashboard = () => {
                     </li>
                   ))}
                 </ul>
+                <h2>Add New Workout Plan?</h2>
               </div>
             )}
           </section>
