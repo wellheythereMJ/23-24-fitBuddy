@@ -25,7 +25,9 @@ const Profile = () => {
         {dropdownVisible && (
           <div className="dropdown-menu">
             <ul>
-              <li>Profile Settings</li>
+              <li><a onClick={() => {
+                if (dropdownVisible) {navigate(`/dashboard/${user.username}`)}
+              }}>Profile Settings</a></li>
               <li><a onClick={() => {
                 if (dropdownVisible) {navigate(`/dashboard/${user.username}`)}
               }}>My Plans</a></li>
