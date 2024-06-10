@@ -21,7 +21,7 @@ const Profile = () => {
   return (
     <div className="profile-container">
       <div className="settings">
-        <button onClick={toggleDropdown}>Settings</button>
+        <button onClick={toggleDropdown}>Options</button>
         {dropdownVisible && (
           <div className="dropdown-menu">
             <ul>
@@ -32,6 +32,9 @@ const Profile = () => {
               <li><a onClick={() => {
                 if (dropdownVisible) {navigate('/login')}
               }}>Change User</a></li>
+              <li><a onClick={() =>{
+                if (dropdownVisible) {navigate('/')}
+              }}>Home</a></li>
             </ul>
           </div>
         )}
